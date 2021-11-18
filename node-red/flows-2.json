@@ -1,0 +1,152 @@
+[
+    {
+        "id": "67cd87be44c7520a",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1a2494dee485733e",
+        "type": "debug",
+        "z": "67cd87be44c7520a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cb8cb2417013e8f1",
+        "type": "mqtt in",
+        "z": "67cd87be44c7520a",
+        "name": "TTN",
+        "topic": "#",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "9e3c06f63f7d07e1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "7d93e2e4429f1e49"
+            ]
+        ]
+    },
+    {
+        "id": "7d93e2e4429f1e49",
+        "type": "function",
+        "z": "67cd87be44c7520a",
+        "name": "",
+        "func": "var value = msg.payload.uplink_message.decoded_payload.gazValue;\nmsg.payload = value;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "1a2494dee485733e",
+                "42e0dabe738a7821"
+            ]
+        ]
+    },
+    {
+        "id": "42e0dabe738a7821",
+        "type": "ui_gauge",
+        "z": "67cd87be44c7520a",
+        "name": "",
+        "group": "fa2ef482a287e59c",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Voltage",
+        "label": "V",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 690,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9e3c06f63f7d07e1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "eu1.cloud.thethings.network",
+        "port": "1883",
+        "tls": "c65519d8d1ea9ad5",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fa2ef482a287e59c",
+        "type": "ui_group",
+        "name": "Gaz (Voltage)",
+        "tab": "8668838b0808f2ec",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "c65519d8d1ea9ad5",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "8668838b0808f2ec",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
