@@ -50,7 +50,7 @@ rn2xx3 myLora(mySerial);
 // the setup routine runs once when you press reset:
 void setup()
 {
-  pinMode(interruptPin, INPUT_PULLUP);
+  pinMode(interruptPin, INPUT);
   //output LED pin
   pinMode(13, OUTPUT);
   led_on();
@@ -69,18 +69,6 @@ void setup()
   delay(2000);
 }
 
-void sendToSleep ()
-{
-  // enable sleep - notez ce premier sommeil, pas le démarre!
-  sleep_enable ();
-  // attache l'interruption, spécifie le code PIN, la méthode pour appeler l'interruption,
-  // et les conditions d'interruption, dans ce cas lorsque la broche est tirée bas.
-  attachInterrupt (interruptPin, wakeUpAgain, HIGH);
-  // active le mode veille
-  sleep_cpu ();
-  // le code continue à partir d'ici après interruption
-  Serial.println ("Wake up.");
-}
 
 void initialize_radio()
 {
@@ -123,9 +111,9 @@ void initialize_radio()
    * ABP: initABP(String addr, String AppSKey, String NwkSKey);
    * Paste the example code from the TTN console here:
    */
-  const char *devAddr = "260B1AE1";
-  const char *nwkSKey = "D8D8447FDD24234D1F6699C7B0AB9374";
-  const char *appSKey = "684FB7E113DC0D328C0D04F8BF814B31";
+  const char *devAddr = "260BA7FB";
+  const char *nwkSKey = "29B347E02560C50099A230376243253E";
+  const char *appSKey = "9B4B24C6CE8A2C16ECA8EA7DB1E42960";
 
   join_result = myLora.initABP(devAddr, appSKey, nwkSKey);
 
@@ -148,19 +136,7 @@ void initialize_radio()
 
 }
 
-
-void wakeUpAgain ()
-{
-  Serial.println("Interrupt fired");
-  // arrête le mode veille
-  sleep_disable ();
-  // efface l'interruption
-  detachInterrupt (interruptPin);
-}
-
-// the loop routine runs over and over again forever:
-void loop()
-{
+void read_data() {
     float sensor_volt;
     float sensorValue;
    
@@ -170,7 +146,6 @@ void loop()
     Serial.print("sensor_volt = ");
     Serial.print(sensor_volt);
     Serial.println("V");
-    led_on();
 
     uint32_t data = sensor_volt*100;
     byte payload[2];
@@ -185,8 +160,35 @@ void loop()
     myLora.txBytes(payload, sizeof(payload)); //one byte, blocking function
 
     led_off();
-    sendToSleep();
-    delay(1000);
+}
+
+void goingToSleep() {
+  sleep_enable();
+  Serial.println("dodo...");
+  delay(100);
+  attachInterrupt(0, wakeUp, RISING);
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  //delay(500);
+  sleep_mode();
+  Serial.println("Waking up...");
+  
+}
+
+void wakeUp() {
+  Serial.println("Interrupt Fired");
+  sleep_disable();
+  detachInterrupt(0);
+}
+// the loop routine runs over and over again forever:
+void loop()
+{
+    goingToSleep();
+    for (int i = 0; i < 3; i++) {
+      read_data();
+      Serial.print("Envoi n°");
+      Serial.println(i);
+      delay(200);
+    }
 }
 
 void led_on()
