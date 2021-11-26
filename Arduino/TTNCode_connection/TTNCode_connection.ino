@@ -37,6 +37,9 @@
  */
 #include <rn2xx3.h>
 #include <SoftwareSerial.h>
+#include <avr/sleep.h>
+
+#define interruptPin 2
 
 SoftwareSerial mySerial(10, 11); // RX, TX
 
@@ -47,6 +50,7 @@ rn2xx3 myLora(mySerial);
 // the setup routine runs once when you press reset:
 void setup()
 {
+  pinMode(interruptPin, INPUT_PULLUP);
   //output LED pin
   pinMode(13, OUTPUT);
   led_on();
@@ -63,6 +67,19 @@ void setup()
 
   led_off();
   delay(2000);
+}
+
+void sendToSleep ()
+{
+  // enable sleep - notez ce premier sommeil, pas le démarre!
+  sleep_enable ();
+  // attache l'interruption, spécifie le code PIN, la méthode pour appeler l'interruption,
+  // et les conditions d'interruption, dans ce cas lorsque la broche est tirée bas.
+  attachInterrupt (interruptPin, wakeUpAgain, HIGH);
+  // active le mode veille
+  sleep_cpu ();
+  // le code continue à partir d'ici après interruption
+  Serial.println ("Wake up.");
 }
 
 void initialize_radio()
@@ -106,9 +123,9 @@ void initialize_radio()
    * ABP: initABP(String addr, String AppSKey, String NwkSKey);
    * Paste the example code from the TTN console here:
    */
-  const char *devAddr = "260B9D09";
-  const char *nwkSKey = "FA6E5B6EE5B0B8DEBBB28444F0A16615";
-  const char *appSKey = "17386FF402C44C59232827009CABFB48";
+  const char *devAddr = "260B1AE1";
+  const char *nwkSKey = "D8D8447FDD24234D1F6699C7B0AB9374";
+  const char *appSKey = "684FB7E113DC0D328C0D04F8BF814B31";
 
   join_result = myLora.initABP(devAddr, appSKey, nwkSKey);
 
@@ -116,7 +133,7 @@ void initialize_radio()
    * OTAA: initOTAA(String AppEUI, String AppKey);
    * If you are using OTAA, paste the example code from the TTN console here:
    */
-  //const char *appEui = "70B3D57ED00486BD";
+  //const char *appEui = "260B1AE1";
   //const char *appKey = "3D1351C97C367C1E063B5D99C24C266E";
   //join_result = myLora.initOTAA(appEui, appKey);
 
@@ -129,6 +146,16 @@ void initialize_radio()
   }
   Serial.println("Successfully joined TTN");
 
+}
+
+
+void wakeUpAgain ()
+{
+  Serial.println("Interrupt fired");
+  // arrête le mode veille
+  sleep_disable ();
+  // efface l'interruption
+  detachInterrupt (interruptPin);
 }
 
 // the loop routine runs over and over again forever:
@@ -158,7 +185,8 @@ void loop()
     myLora.txBytes(payload, sizeof(payload)); //one byte, blocking function
 
     led_off();
-    delay(500);
+    sendToSleep();
+    delay(1000);
 }
 
 void led_on()
