@@ -5,3 +5,4 @@ Lien utile:
 - 
 - http://commentgeek.com/5-astuces-economie-energie/
 - 
+- https://www.snapeda.com/parts/LTC1050CN8/Linear%20Technology/view-part/?ref=search&t=LTC1050CN8
