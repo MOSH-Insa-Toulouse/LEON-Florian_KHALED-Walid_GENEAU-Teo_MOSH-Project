@@ -40,6 +40,7 @@
 #include <avr/sleep.h>
 
 #define interruptPin 2
+#define transistorPin 9
 
 SoftwareSerial mySerial(10, 11); // RX, TX
 
@@ -53,6 +54,7 @@ void setup()
   pinMode(interruptPin, INPUT);
   //output LED pin
   pinMode(13, OUTPUT);
+  pinMode(transistorPin, OUTPUT);
   led_on();
 
   // Open serial communications and wait for port to open:
@@ -111,9 +113,9 @@ void initialize_radio()
    * ABP: initABP(String addr, String AppSKey, String NwkSKey);
    * Paste the example code from the TTN console here:
    */
-  const char *devAddr = "260BA7FB";
-  const char *nwkSKey = "29B347E02560C50099A230376243253E";
-  const char *appSKey = "9B4B24C6CE8A2C16ECA8EA7DB1E42960";
+  const char *devAddr = "260B1AE1";
+  const char *nwkSKey = "D8D8447FDD24234D1F6699C7B0AB9374";
+  const char *appSKey = "684FB7E113DC0D328C0D04F8BF814B31";
 
   join_result = myLora.initABP(devAddr, appSKey, nwkSKey);
 
@@ -182,13 +184,17 @@ void wakeUp() {
 // the loop routine runs over and over again forever:
 void loop()
 {
+    
     goingToSleep();
+    digitalWrite(transistorPin, HIGH);
+    delay(10000);
     for (int i = 0; i < 3; i++) {
       read_data();
       Serial.print("Envoi n°");
       Serial.println(i);
       delay(200);
     }
+    digitalWrite(transistorPin, LOW);
 }
 
 void led_on()
