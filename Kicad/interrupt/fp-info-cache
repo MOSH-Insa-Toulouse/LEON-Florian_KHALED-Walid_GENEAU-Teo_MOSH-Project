@@ -1,4 +1,4 @@
-19755481984464959
+19762033774541766
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52205,6 +52205,13 @@ heatsink
 0
 2
 1
+IRF520
+TO270P460X1020X2008-3P
+TO-220
+MOSFET (N-Channel)
+0
+3
+3
 Inductor_SMD
 L_6.3x6.3_H3
 Choke, SMD, 6.3x6.3mm 3mm height
@@ -56706,6 +56713,13 @@ Yellow 5381 Series LED
 0
 2
 2
+LTC1050
+SOIC127P599X175-8N
+S8(SOIC)
+Integrated Circuit
+0
+8
+8
 Module
 A20_OLINUXINO_LIME2
 A20 Olinuxino LIME2, 1.2GHz, 512-1024MB RAM, Micro-SD, NAND or eMMC, 1000Mbit Ethernet
@@ -75634,6 +75648,13 @@ WiFi IEEE802.11 b/g/n
 0
 44
 44
+RN2448
+RN2483
+RM 2483
+Undefined or Miscellaneous
+0
+47
+47
 Relay_SMD
 Relay_2P2T_10x6mm_TE_IMxxG
 Signal Relay, 10x6mm, 2 Form C, Gull Wings, https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7F108-98001%7FZ.1%7Fpdf%7FEnglish%7FENG_DS_108-98001_Z.1.pdf
@@ -84503,3 +84524,10 @@ varistor SIOV
 0
 2
 2
+ltc 1050
+PDIP-8_N
+
+
+0
+8
+8
