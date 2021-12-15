@@ -989,4 +989,26 @@
     (effects (font (size 1 1) (thickness 0.15)))
   )
 
+  (segment (start 133.718 91.43) (end 141.963 83.185) (width 0.25) (layer "B.Cu") (net 22) (tstamp 07a6c6d8-e1c1-4f8f-af69-dfa81e0f4ba2))
+  (segment (start 141.963 83.185) (end 147.828 83.185) (width 0.25) (layer "B.Cu") (net 22) (tstamp 33f197c7-472d-407b-a7c3-ca5bf645861f))
+  (segment (start 147.828 83.185) (end 149.098 81.915) (width 0.25) (layer "B.Cu") (net 22) (tstamp 8a7f232f-ace6-406f-b920-9b02082b4d0d))
+  (segment (start 147.574 76.581) (end 147.574 75.565) (width 0.25) (layer "B.Cu") (net 22) (tstamp c44a1f42-bfb7-4458-84fa-8fa19240d227))
+  (segment (start 149.098 78.105) (end 147.574 76.581) (width 0.25) (layer "B.Cu") (net 22) (tstamp cdb664ee-3f00-4c5a-af63-9c9dadcc63d1))
+  (segment (start 133.718 92.405) (end 133.718 91.43) (width 0.25) (layer "B.Cu") (net 22) (tstamp dd10163f-a041-4080-beea-991cfe918582))
+  (segment (start 149.098 81.915) (end 149.098 78.105) (width 0.25) (layer "B.Cu") (net 22) (tstamp f882fe15-e202-4444-a6f6-575412f1c9a6))
+
+  (zone (net 4) (net_name "GND") (layer "B.Cu") (tstamp 20caf6d2-76a7-497e-ac56-f6d31eb9027b) (hatch edge 0.508)
+    (connect_pads (clearance 0.508))
+    (min_thickness 0.254) (filled_areas_thickness no)
+    (fill (thermal_gap 0.508) (thermal_bridge_width 0.508))
+    (polygon
+      (pts
+        (xy 182.118 127.635)
+        (xy 109.728 127.635)
+        (xy 108.458 102.235)
+        (xy 108.458 73.025)
+        (xy 179.578 71.755)
+      )
+    )
+  )
 )
