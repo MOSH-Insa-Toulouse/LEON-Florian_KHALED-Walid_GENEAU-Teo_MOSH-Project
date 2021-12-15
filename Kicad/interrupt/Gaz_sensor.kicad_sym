@@ -52,7 +52,7 @@
         (number "7" (effects (font (size 1.27 1.27))))
       )
       (pin input line (at 17.78 2.54 180) (length 2.54)
-        (name "R_Sens_2_OUT" (effects (font (size 1.27 1.27))))
+        (name "R_Poly_OUT" (effects (font (size 1.27 1.27))))
         (number "8" (effects (font (size 1.27 1.27))))
       )
       (pin input line (at 17.78 0 180) (length 2.54)
