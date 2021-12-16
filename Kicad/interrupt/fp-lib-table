@@ -1,4 +1,9 @@
 (fp_lib_table
   (lib (name "Socket_Arduino_Uno")(type "KiCad")(uri "$(KIPRJMOD)/Socket_Arduino_Uno.pretty")(options "")(descr ""))
   (lib (name "GAZ_foot_print")(type "KiCad")(uri "${KIPRJMOD}/GAZ_foot_print.pretty")(options "")(descr ""))
+  (lib (name "ltc1050")(type "KiCad")(uri "C:/Users/User1/Downloads/ltc1050")(options "")(descr ""))
+  (lib (name "Newltc1050")(type "KiCad")(uri "C:/Users/User1/Downloads/Newltc1050")(options "")(descr ""))
+  (lib (name "3D")(type "KiCad")(uri "C:/Users/User1/Downloads/LTC1050CN8#PBF/3D")(options "")(descr ""))
+  (lib (name "IRF520PBF")(type "KiCad")(uri "C:/Users/User1/Downloads/IRF520PBF")(options "")(descr ""))
+  (lib (name "KiCadIRF")(type "KiCad")(uri "C:/Users/User1/Downloads/IRF520PBF/KiCadIRF")(options "")(descr ""))
 )
