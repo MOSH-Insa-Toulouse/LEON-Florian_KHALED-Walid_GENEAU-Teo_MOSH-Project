@@ -145,7 +145,7 @@ Nous pouvons observer que c’est l’interruption matérielle qui a le plus d�
 
 De plus, on a mesuré la durée des périodes de sleep et de wake-up du circuit, on observe une période moyenne de **123 secondes** pour les périodes inactives du circuit contre 17 secondes en moyenne pour la phase active, or, l’interruption logicielle active le capteur que pour une durée de **7 secondes**.
 
-On convertir en heure et on multiplie par les valeurs de courant correspondantes mesurées pour obtenir la mesure en Ah, puis on multiplie par le voltage (5V) pour obtenir une mesure de puissance en Wh.
+On convertit en heure et on multiplie par les valeurs de courant correspondantes mesurées pour obtenir la mesure en Ah, puis on multiplie par le voltage (5V) pour obtenir une mesure de puissance en Wh.
 
 On a bien :
 <!-- $$
