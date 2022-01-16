@@ -72,6 +72,21 @@ Nous utilisons l’Arduino UNO comme microcontrôleur accompagné d’une breadb
 Les données sont envoyées sur le site TTN via LORA. 
 
 ![](./media/image9.png)
+
+Le code suivant nous permet de décoder les valeurs en hexadécimal reçues : 
+```javascript
+function decodeUplink(input) {
+var data = input.bytes[0] << 8  | input.bytes[1];
+  return {
+    data: {
+      gazValue: data/100
+    },
+    warnings: [],
+    errors: []
+  };
+}
+```
+
 ### **Partie consommation Energie**
 
 Dans le but de diminuer au maximum la consommation d’Energie de notre système, nous avons utilisé un circuit d’interruption, nous arrivons même à éteindre et à rallumer le capteur avec ce circuit en rajoutant un transistor ce qui réduit énormément la consommation d’Energie du circuit car c’est le capteur qui consomme la quasi-totalité de l’Energie consommée par tout le circuit.
