@@ -1,4 +1,4 @@
-﻿___
+___
 
 # Keywords
 
@@ -56,7 +56,7 @@ Nous remarquons sur les deux figures suivantes qu’en variant les paramètres d
 ___
 # Partie Arduino 
 
-Nous utilisons l’Arduino UNO comme microcontrôleur accompagné d’une bread-bord pour monter le circuit prototype (circuit d’interruption + capteur de gaz groove + Antenne LORA). 
+Nous utilisons l’Arduino UNO comme microcontrôleur accompagné d’une breadboard pour monter le circuit prototype (circuit d’interruption + capteur de gaz groove + Antenne LORA). 
 
 > Le code Arduino est composé des parties suivantes : 
 >
