@@ -1,25 +1,27 @@
 ﻿___
-___
+
 # Keywords
+
 ___
 > Arduino, Kicad, The Thing Networks, Lora, Node-Red, LT-spice  
 
 ___
 # Membres du groupe
-___
+
 > Ce projet à été réalisé par : 
 > - GENEAU Téo
 > - KHALED Walid
 > - LEON Florian
-
+> 
+___
 # Description générale du projet 
----
+
 Nous voulons dans ce projet réaliser un smart device, nous voulons récupérer les données d’un capteur de gaz et les envoyer via le protocole LORA sur le site TTN et ensuite afficher les données du capteur sur un Dashboard sur Node-Red. Nous nous intéressons aussi à la consommation d’Energie du capteur, donc nous allons utiliser le capteur sous un mode réveillé (très bref moment) pour mesurer et envoyer les données et un autre mode endormi où il ne consomme quasiment rien (pendant la majorité du temps).     
 
 ![](./media/image1.jpeg)
 ___
 # Partie 1 : Conception du PCB 
----
+
 Le Shield contient un circuit d’adaptation d’impédance pour relier le capteur de gaz au microcontrôleur (Arduino Uno) ainsi qu’un circuit d’interruption qui gère les deux mode «Sleep» et «Wake-up» du circuit et du capteur de gaz.
 
 Un connecteur est prévu pour relier le circuit à l’antenne LORA. 
@@ -43,7 +45,7 @@ L’emplacement réservé au capteur de gaz est au milieu du PCB en forme de pet
 
 ___
 # Partie LT-SPICE 
-___
+
 Afin de simuler notre circuit d’interruption et gérer la consommation d’Energie du circuit nous avons utilisé LT-SPICE afin de simuler le comportement que nous désirons. 
 
 Nous remarquons sur les deux figures suivantes qu’en variant les paramètres des différents composants du circuit notamment les résistances, nous parvenons à contrôler la durée d’interruption. 
@@ -53,7 +55,7 @@ Nous remarquons sur les deux figures suivantes qu’en variant les paramètres d
 
 ___
 # Partie Arduino 
-___
+
 Nous utilisons l’Arduino UNO comme microcontrôleur accompagné d’une bread-bord pour monter le circuit prototype (circuit d’interruption + capteur de gaz groove + Antenne LORA). 
 
 > Le code Arduino est composé des parties suivantes : 
@@ -131,38 +133,50 @@ De plus, on a mesuré la durée des périodes de sleep et de wake-up du circuit,
 On convertir en heure et on multiplie par les valeurs de courant correspondantes mesurées pour obtenir la mesure en Ah, puis on multiplie par le voltage (5V) pour obtenir une mesure de puissance en Wh.
 
 On a bien :
-$$
+<!-- $$
 P_{sleep} = \frac{123}{3600} \cdot 0.04 \cdot 5 = 6.833 \enspace mWh
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=P_%7Bsleep%7D%20%3D%20%5Cfrac%7B123%7D%7B3600%7D%20%5Ccdot%200.04%20%5Ccdot%205%20%3D%206.833%20%5Censpace%20mWh%0D"></div>
 
 contre
 
-$$
+<!-- $$
 P_{actif} = \frac{7}{3600} \cdot 0.22 \cdot 5 = 2.138 \enspace mWh
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=P_%7Bactif%7D%20%3D%20%5Cfrac%7B7%7D%7B3600%7D%20%5Ccdot%200.22%20%5Ccdot%205%20%3D%202.138%20%5Censpace%20mWh%0D"></div>
 
 Soit P<sub>moy</sub> la puissance moyenne de notre système avec ce mécanisme sleep/wake-up.
-$$
+<!-- $$
 P_{moy} = \frac{P_{sleep} + P_{actif}}{2} = 4.4861 \enspace mWh
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=P_%7Bmoy%7D%20%3D%20%5Cfrac%7BP_%7Bsleep%7D%20%2B%20P_%7Bactif%7D%7D%7B2%7D%20%3D%204.4861%20%5Censpace%20mWh%0D"></div>
 
 Or, sans ce mécanisme on a bien une consommation de 0.22 A et 5 V pendant 140 s (123 + 17) soit :
 
-$$
+<!-- $$
 ConsoAmpere = \frac{140}{3600} \cdot 0.22 = 0.0085 \enspace Ah
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=ConsoAmpere%20%3D%20%5Cfrac%7B140%7D%7B3600%7D%20%5Ccdot%200.22%20%3D%200.0085%20%5Censpace%20Ah%0D"></div>
 
 et 
 
-$$
+<!-- $$
 P_{max} = ConsoAmpere \cdot 5 = 42.77 \enspace m1
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=P_%7Bmax%7D%20%3D%20ConsoAmpere%20%5Ccdot%205%20%3D%2042.77%20%5Censpace%20m1%0D"></div>
 
 On observe qu’on a quasiment divisé par 10 la consommation classique avec la mise en place de nos interruptions logicielles et matérielles.
 
-$$
+<!-- $$
 5V \cdot ah = Wh 
-$$
+$$ --> 
+
+<div align="center"><img src="https://render.githubusercontent.com/render/math?math=5V%20%5Ccdot%20ah%20%3D%20Wh%20%0D"></div>
 
 ---
 # Partie Node-Red 
