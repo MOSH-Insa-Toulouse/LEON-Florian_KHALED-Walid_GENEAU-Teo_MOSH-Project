@@ -137,7 +137,7 @@ On a bien :
 P_{sleep} = \frac{123}{3600} \cdot 0.04 \cdot 5 = 6.833 \enspace mWh
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=P_%7Bsleep%7D%20%3D%20%5Cfrac%7B123%7D%7B3600%7D%20%5Ccdot%200.04%20%5Ccdot%205%20%3D%206.833%20%5Censpace%20mWh%0D"></div>
+![](./media/eq1.png)
 
 contre
 
@@ -145,14 +145,14 @@ contre
 P_{actif} = \frac{7}{3600} \cdot 0.22 \cdot 5 = 2.138 \enspace mWh
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=P_%7Bactif%7D%20%3D%20%5Cfrac%7B7%7D%7B3600%7D%20%5Ccdot%200.22%20%5Ccdot%205%20%3D%202.138%20%5Censpace%20mWh%0D"></div>
+![](./media/eq2.png)
 
 Soit P<sub>moy</sub> la puissance moyenne de notre système avec ce mécanisme sleep/wake-up.
 <!-- $$
 P_{moy} = \frac{P_{sleep} + P_{actif}}{2} = 4.4861 \enspace mWh
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=P_%7Bmoy%7D%20%3D%20%5Cfrac%7BP_%7Bsleep%7D%20%2B%20P_%7Bactif%7D%7D%7B2%7D%20%3D%204.4861%20%5Censpace%20mWh%0D"></div>
+![](./media/eq3.png)
 
 Or, sans ce mécanisme on a bien une consommation de 0.22 A et 5 V pendant 140 s (123 + 17) soit :
 
@@ -160,15 +160,16 @@ Or, sans ce mécanisme on a bien une consommation de 0.22 A et 5 V pendant 140 s
 ConsoAmpere = \frac{140}{3600} \cdot 0.22 = 0.0085 \enspace Ah
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=ConsoAmpere%20%3D%20%5Cfrac%7B140%7D%7B3600%7D%20%5Ccdot%200.22%20%3D%200.0085%20%5Censpace%20Ah%0D"></div>
+![](./media/eq4.png)
 
 et 
 
 <!-- $$
-P_{max} = ConsoAmpere \cdot 5 = 42.77 \enspace m1
+P_{max} = ConsoAmpere \cdot 5 = 42.77 \enspace mA
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=P_%7Bmax%7D%20%3D%20ConsoAmpere%20%5Ccdot%205%20%3D%2042.77%20%5Censpace%20m1%0D"></div>
+![](./media/eq5.png)
+
 
 On observe qu’on a quasiment divisé par 10 la consommation classique avec la mise en place de nos interruptions logicielles et matérielles.
 
@@ -176,7 +177,7 @@ On observe qu’on a quasiment divisé par 10 la consommation classique avec la 
 5V \cdot ah = Wh 
 $$ --> 
 
-<div align="center"><img style="background: white; padding: 5px;" src="https://render.githubusercontent.com/render/math?math=5V%20%5Ccdot%20ah%20%3D%20Wh%20%0D"></div>
+![](./media/eq6.png)
 
 ---
 # Partie Node-Red 
